@@ -1,0 +1,79 @@
+<html>
+<title>Dierinfo</title>
+<link rel="stylesheet" href="opmaak.css" />
+<script rel="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<h1>Hier staat de informatie van de dieren in het asiel</h1>
+	<body>
+	
+		<a href="index.html">
+			<img src="logo-hond-kat.jpeg" alt="Dog and Cat">
+		</a>
+		<p><a href="Dieren.html#Hondentabel" class="navi">Naar Honden</a>	<a href="Dieren.html#Kattentabel" class="navi">Naar Katten</a></p>
+		
+	<h2>Informatie over de honden</h2>
+		<p>Hier staat de naam van een hond, zijn leeftijd, het registratienummer en of hij gereserveerd is.</p>
+
+		<table class="Hondentabel">
+			<thead>
+				<tr>
+					<th>Naam</th> <th>Leeftijd</th> <th>Reg. Nr.</th> <th>Gereserveerd</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Doggy</th> <td>9</td> <td>01353</td> <td>Nee</td>
+				</tr>
+				<tr>
+					<th>Fluffy</th> <td>3</td> <td>07934</td> <td>Nee</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	<h2>Informatie over de katten</h2>
+	<p>Hier staat de naam van een kat, zijn leeftijd, het registratienummer en of hij gereserveerd is.</p>
+		<table class="Kattentabel">
+			<thead>
+				<tr>
+					<th>Naam</th> <th>Leeftijd</th> <th>Reg. Nr.</th> <th>Gereserveerd</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Mittens</th> <td>11</td> <td>15469</td> <td>Ja</td>
+				</tr>
+				<tr>
+					<th>Nena</th> <td>18</td> <td>12436</td> <td>Nee</td>
+				</tr>
+			</tbody>
+		</table>
+	<br />
+		
+	<h3>Voeg hier nieuwe dieren toe</h3>
+	<form>
+		<input type="radio" name="soort" value="hond" checked="checked" /> Hond
+		<input type="radio" name="soort" value="kat" checked="checked" /> Kat
+	
+		<br />
+		<br />
+		
+		<label for="naam">Naam: </label>
+		<input type="text" id="naam" />
+		<p class="hidden">Dit veld is verplicht!</p>
+		<br />
+		<br />
+		
+		<label for="leeftijd">Leeftijd: </label>
+		<input type="text" id="leeftijd" />
+		<br />
+		<br />
+		
+		<label for="registratienummer">Registratienummer: </label>
+		<input type="text" id="registratienummer" />
+		<br />
+		<br />
+		
+		<input type="submit" value="Toevoegen" class="knop" />
+	</form>
+	
+</body>
+</html>
