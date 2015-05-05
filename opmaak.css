@@ -69,12 +69,12 @@ input
 	cursor: hand;
 }
 
-.hidden:focus
+#hidden
 {
-	visibility: 100%;
+	display: none;
 }
 
-.hidden:blur
+#regnr
 {
-	visibility: hidden;
+	display: none;
 }

@@ -2,9 +2,10 @@
 <title>Dierinfo</title>
 <link rel="stylesheet" href="opmaak.css" />
 <script rel="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 <h1>Hier staat de informatie van de dieren in het asiel</h1>
 	<body>
-	
+		<script type = "text/javascript" src="java.js"></script>
 		<a href="index.html">
 			<img src="logo-hond-kat.jpeg" alt="Dog and Cat">
 		</a>
@@ -57,8 +58,8 @@
 		<br />
 		
 		<label for="naam">Naam: </label>
-		<input type="text" id="naam" />
-		<p class="hidden">Dit veld is verplicht!</p>
+		<input type="text" id="naam"  />
+		<p id="hidden">Dit veld is verplicht!</p>
 		<br />
 		<br />
 		
@@ -69,11 +70,13 @@
 		
 		<label for="registratienummer">Registratienummer: </label>
 		<input type="text" id="registratienummer" />
+		<p id="regnr">geen of 5 cijfers 1ste cijfer een 0</p>
 		<br />
 		<br />
 		
-		<input type="submit" value="Toevoegen" class="knop" />
+		<input type="submit" value="Toevoegen" id="knop" />
 	</form>
+	
 	
 </body>
 </html>
