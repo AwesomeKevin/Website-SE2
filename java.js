@@ -4,15 +4,32 @@ function OnReady() {
   //$('#naam').focus(Focus); 
   //$('#naam').blur(Blur); 
   $("#knop").click(OnSubmit);
-  if(localStorage.getItem("knaam") != null)
-  {
-    alert(localStorage.getItem("ksoort") + '\n' + localStorage.getItem("knaam") + '\n' + localStorage.getItem("kleeftijd") + '\n' + localStorage.getItem("kregistratienummer") + '\n' + localStorage.getItem("kgereserveerd"));
-  }
-  if(localStorage.getItem("hnaam") != null)
-  {
-    alert(localStorage.getItem("hsoort") + '\n' + localStorage.getItem("hnaam") + '\n' + localStorage.getItem("hleeftijd") + '\n' + localStorage.getItem("hregistratienummer") + '\n' + localStorage.getItem("hgereserveerd"));
-  }
-	//\n localStorage.getItem("kleeftijd")\n localStorage.getItem("kregistratienummer")/n localStorage.getItem("kgereserveerd")
+  $("#verwijderhondknop").click(OnVerwijderHonden);
+  $("#verwijderkatknop").click(OnVerwijderKatten);
+	
+	// alle katten inladen
+	var cat_list = JSON.parse(localStorage.getItem("cats"));
+	
+	if(Array.isArray(cat_list))
+	{
+		for(var i = 0; i < cat_list.length; ++i)
+		{
+			var cat = cat_list[i];
+			$("#Kattabel").append("<tr><td>" + cat.naam + "</td><td>" + cat.leeftijd + "</td><td>" + cat.registratienummer + "</td><td>" + "nee" + "</td></tr>");
+		}
+	}
+	
+	// alle honden inladen
+	var dog_list = JSON.parse(localStorage.getItem("dogs"));
+	
+	if(Array.isArray(dog_list))
+	{
+		for(var i = 0; i < dog_list.length; ++i)
+		{
+			var dog = dog_list[i];
+			$("#Hondtabel").append("<tr><td>" + dog.naam + "</td><td>" + dog.leeftijd + "</td><td>" + dog.registratienummer + "</td><td>" + "nee" + "</td></tr>");
+		}
+	}
 }
 $(document).ready(OnReady);
 
@@ -21,8 +38,7 @@ function Focus() {
 }
 
 function OnSubmit(event) {
-  
-  
+
   var animal = {
   "soort":  $("input[name=soort]:checked").val(),
   "naam":     $("#naam").val(),
@@ -69,33 +85,49 @@ if(animal.registratienummer.length > 0)
 	}
 }
 
-// als alles goed is gegaan
+
+// alleen als alles goed is gegaan dan toevoegen aan de list
 if(check == 1)
-{	
-	if(animal.soort == "hond")
-	{
-		localStorage.setItem("hsoort", JSON.stringify(animal.soort));
-		localStorage.setItem("hnaam", JSON.stringify(animal.naam));
-		localStorage.setItem("hleeftijd", JSON.stringify(animal.leeftijd));
-		localStorage.setItem("hregistratienummer", JSON.stringify(animal.registratienummer));
-		localStorage.setItem("hgereserveerd", "Niet Gereserveerd");	
-	}
+{
+	
 	if(animal.soort == "kat")
-	{		
-		localStorage.setItem("ksoort", JSON.stringify(animal.soort));
-		localStorage.setItem("knaam", JSON.stringify(animal.naam));
-		localStorage.setItem("kleeftijd", JSON.stringify(animal.leeftijd));
-		localStorage.setItem("kregistratienummer", JSON.stringify(animal.registratienummer));
-		localStorage.setItem("kgereserveerd", "Niet Gereserveerd");	
+{
+	// list voor katten
+	var cat_list = JSON.parse(localStorage.getItem("cats"));
+	if(!Array.isArray(cat_list)) {
+	cat_list = [];
 	}
+	cat_list.push(animal);
 
+	localStorage.setItem("cats", JSON.stringify(cat_list));
 }
 
 
+if(animal.soort == "hond")
+{
+	// list voor honden
+	var dog_list = JSON.parse(localStorage.getItem("dogs"));
+	if(!Array.isArray(dog_list)) {
+	dog_list = [];
+	}
+	dog_list.push(animal);
 
+	localStorage.setItem("dogs", JSON.stringify(dog_list));
+}
+}
 }
 
+function OnVerwijderHonden(event)
+{
+	localStorage.removeItem("dogs");
+	location.reload();
+}
 
+function OnVerwijderKatten(event)
+{
+	localStorage.removeItem("cats");
+	location.reload();
+}
 
 function Blur() {
 	document.getElementById("hidden").style.display = 'none';
@@ -113,3 +145,13 @@ function Blur() {
     // document.getElementById("hidden").style.display = 'none';
 // }
 //</script>
+
+
+// var animal = {
+  // "soort":  $("input[name=soort]:checked").val(),
+  // "naam":     $("#naam").val(),
+  // "leeftijd":      $("#leeftijd").val(),
+  // "registratienummer":    $("#registratienummer").val()
+// };
+
+// var animal = [$("input[name=soort]:checked").val(), $("#naam").val(), $("#leeftijd").val(), $("#registratienummer").val()];
