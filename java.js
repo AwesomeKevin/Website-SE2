@@ -129,9 +129,11 @@ function OnVerwijderKatten(event)
 	location.reload();
 }
 
+/*
 function Blur() {
 	document.getElementById("hidden").style.display = 'none';
 }
+*/
 
 
 
